@@ -1,0 +1,13 @@
+This is a shell file that sets up after-install EndeavourOS to my personal specification
+
+Below is a list of all current features: 
+-Installs Required and Preferential Packages
+-Installs Hyprland Desktop Environment
+-Sets up Default LightDM (With Greeter)
+-Installs and Configures KVM with VirtManager
+
+Below is a list of all future features:
+-Customize Greeter
+-Custom KVM VM Setups
+-Setup GPU Passthrough Prerequisites
+-Other Customizations 
