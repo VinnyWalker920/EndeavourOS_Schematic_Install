@@ -5,9 +5,9 @@ Below is a list of all current features:
 -Installs Hyprland Desktop Environment
 -Sets up Default LightDM (With Greeter)
 -Installs and Configures KVM with VirtManager
+-Customize Greeter
 
 Below is a list of all future features:
--Customize Greeter
 -Custom KVM VM Setups
 -Setup GPU Passthrough Prerequisites
 -Other Customizations 

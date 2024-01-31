@@ -2,7 +2,7 @@
 
 
 #Installs All Relevant Packages
-sudo pacman -S neofetch vscode sed htop qemu-full virt-manager virt-viewer dnsmasq bridge-utils libguestfs ebtables vde2 openbsd-netcat lightdm lightdm-gtk-greeter
+sudo pacman -S neofetch vscode sed htop qemu-full virt-manager virt-viewer dnsmasq bridge-utils libguestfs ebtables vde2 openbsd-netcat lightdm lightdm-gtk-greeter lightdm-slick-greeter
 
 #Does Some Magic So KVM Works
 sudo sed -i 's/#unix_sock_group = "libvirt"/unix_sock_group = "libvirt"/' /etc/libvirt/libvirtd.conf
@@ -13,6 +13,10 @@ sudo usermod -aG libvirt $USER
 sudo systemctl start libvirtd.service
 sudo systemctl enable libvirtd.service
 
+#Configures Greeter and Customizes it
+sudo sed -i 's/#greeter-session="/greeter-session=lightdm-slick-greeter/2' /etc/light/lightdm.conf
+sudo cp ~/Downloads/EndeavourOS_Schematic_Install/wallpaper/midnight.jpg /usr/share/pixmaps/
+sudo echo -e [Greeter]'\n'background=/usr/share/pixmaps/midnight.jpg > /etc/light/slick-greeter.conf
 
 #Enables LightDM Which Will Start Greeter Upon Reboot
 sudo systemctl enable lightdm.service
