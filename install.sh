@@ -14,9 +14,9 @@ sudo systemctl start libvirtd.service
 sudo systemctl enable libvirtd.service
 
 #Configures Greeter and Customizes it
-sudo sed -i 's/#greeter-session="/greeter-session=lightdm-slick-greeter/2' /etc/light/lightdm.conf
+sudo sed -i 's/#greeter-session="/greeter-session=lightdm-slick-greeter/2' /etc/lightdm/lightdm.conf
 sudo cp ~/Downloads/EndeavourOS_Schematic_Install/wallpaper/midnight.jpg /usr/share/pixmaps/
-sudo echo -e [Greeter]'\n'background=/usr/share/pixmaps/midnight.jpg > /etc/light/slick-greeter.conf
+sudo echo -e [Greeter]'\n'background=/usr/share/pixmaps/midnight.jpg > /etc/lightdm/slick-greeter.conf
 
 #Enables LightDM Which Will Start Greeter Upon Reboot
 sudo systemctl enable lightdm.service
