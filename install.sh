@@ -1,7 +1,32 @@
 !# /bin/bash
+#///////////////////////////////////
+#Package Installs
+#///////////////////////////////////
+
 #Updates Mirrors and Installs All Relevant Packages
 sudo pacman -Syy
-sudo pacman -S neofetch vscode sed htop qemu-full virt-manager virt-viewer dnsmasq bridge-utils libguestfs ebtables vde2 openbsd-netcat lightdm lightdm-gtk-greeter lightdm-slick-greeter
+sudo pacman -S neofetch vscode sed htop qemu-full virt-manager virt-viewer dnsmasq bridge-utils libguestfs ebtables vde2 openbsd-netcat lightdm lightdm-gtk-greeter lightdm-slick-greeter pcsc-lite pcsc-perl pcsc-tools opensc
+yay -S coolkey
+
+
+
+#///////////////////////////////////
+#CAC Reader
+#///////////////////////////////////
+
+#Starts and Enables Daemon for CAC Reader
+sudo systemctl start pcsd
+sudo systemctl enable pcsd
+
+#Configures CAC Reader for Chromium
+modutil -dbdir sql:.pki/nssdb/ -add "CAC Module" -libfile /usr/lib64/opensc-pkcs11.so
+# modutil -dbdir sql:.pki/nssdb/ -delete "CAC Module" -- For Removing CAC Module if Needed
+
+
+
+#///////////////////////////////////
+#KVM Configure
+#///////////////////////////////////
 
 #Does Some Magic So KVM Works
 sudo sed -i 's/#unix_sock_group = "libvirt"/unix_sock_group = "libvirt"/' /etc/libvirt/libvirtd.conf
@@ -11,6 +36,12 @@ sudo usermod -aG libvirt $USER
 #Enables and Starts KVM services
 sudo systemctl start libvirtd.service
 sudo systemctl enable libvirtd.service
+
+
+
+#///////////////////////////////////
+#Display Manager/Greeter
+#///////////////////////////////////
 
 #Changes LightDM Config to Allow New Greeter
 sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
@@ -24,6 +55,12 @@ sudo sed -i 'sX#background=Xbackground=/usr/share/pixmaps/midnight.jpgX' /etc/li
 
 #Enables LightDM Which Will Start Greeter Upon Reboot
 sudo systemctl enable lightdm.service
+
+
+
+#///////////////////////////////////
+#Hyprland Install
+#///////////////////////////////////
 
 #Clones Hyprland Desktop Environment Install Files
 cd ~/Downloads
